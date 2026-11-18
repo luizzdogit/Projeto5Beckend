@@ -1,0 +1,22 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Finalizar pedido | IESB Marketplace{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <p class="eyebrow">QUASE LÁ</p>
+  <h1>Finalizar pedido</h1>
+  <p>O estoque será confirmado no momento da compra.</p>
+</section>
+{% if not request.user.is_authenticated %}
+  <div class="notice">Para concluir o pedido, <a href="{% url 'login' %}?next=/checkout/">entre na sua conta</a>.</div>
+{% endif %}
+<div id="message" class="message" role="status" aria-live="polite"></div>
+<section id="checkout-items" class="cart-list" aria-label="Resumo do pedido">
+  <p>Carregando resumo...</p>
+</section>
+<section class="cart-summary">
+  <p>Total do pedido <strong id="checkout-total">R$ 0,00</strong></p>
+  <button id="place-order" class="button" type="button" {% if not request.user.is_authenticated %}disabled{% endif %}>
+    Confirmar pedido
+  </button>
+</section>
+{% endblock %}

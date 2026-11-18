@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}IESB Marketplace{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'marketplace/styles.css' %}">
+  <script src="{% static 'marketplace/store.js' %}" defer></script>
+</head>
+<body>
+  <form id="csrf-token" hidden>{% csrf_token %}</form>
+  <header class="site-header">
+    <a class="brand" href="/">IESB <span>Marketplace</span></a>
+    <nav aria-label="Navegação principal">
+      <a href="/">Produtos</a>
+      <a href="/cart/">Carrinho <span id="cart-count" class="cart-count">0</span></a>
+      {% if request.user.is_authenticated %}
+        <span class="user-name">{{ request.user.username }}</span>
+        <form action="{% url 'logout' %}" method="post" class="inline-form">
+          {% csrf_token %}
+          <button class="nav-button" type="submit">Sair</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}?next=/checkout/">Entrar</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="page-shell">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">Projeto acadêmico · Construção de Backend · IESB</footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Carrinho | IESB Marketplace{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <p class="eyebrow">SEUS FAVORITOS</p>
+  <h1>Carrinho de compras</h1>
+  <p>Confira os itens antes de continuar.</p>
+</section>
+<div id="message" class="message" role="status" aria-live="polite"></div>
+<section id="cart-items" class="cart-list" aria-label="Itens no carrinho">
+  <p>Carregando carrinho...</p>
+</section>
+<section class="cart-summary">
+  <p>Total <strong id="cart-total">R$ 0,00</strong></p>
+  <a class="button button-secondary" href="/">Continuar comprando</a>
+  <a class="button" href="/checkout/">Finalizar pedido</a>
+</section>
+{% endblock %}
